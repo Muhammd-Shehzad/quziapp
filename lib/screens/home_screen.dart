@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quziapp/data/data.dart';
+import 'package:quziapp/screens/category_set_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -53,27 +54,53 @@ class HomeScreen extends StatelessWidget {
                     crossAxisCount: 2),
                 itemBuilder: ((context, index) {
                   final category = Data.categories[index];
-                  return Container(
-                    padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
-                      children: [
-                        Image.asset(
-                          category.image,
-                          height: 160,
-                          width: 125,
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return CategorySetScreen(category: category);
+                          },
                         ),
-                        Text(
-                          category.name,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 21,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
+                      );
+                    },
+                    child: Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Colors.indigo, Colors.purpleAccent],
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter),
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 0.3,
+                            offset: Offset(3, 3),
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            category.image,
+                            height: 120,
+                            width: 120,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            category.name,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w600),
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 }),

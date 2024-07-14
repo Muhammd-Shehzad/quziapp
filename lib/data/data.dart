@@ -10,13 +10,18 @@ class Data {
           name: 'Quiz Set 1',
           questions: [
             Question(
+              //questions
               'What is Flutter?',
+
+              //options
               [
                 'A UI framework',
                 'A programming language',
                 'An operating system',
                 'None of the above'
               ],
+
+              //index of correct answer
               0,
             ),
             Question(
